@@ -1,0 +1,19 @@
+{
+  "name": "wildcodeschool_with_vue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Darkheadbanger/WildCodeSchool_with_vue.git"
+  },
+  "author": "David Bouhaben",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Darkheadbanger/WildCodeSchool_with_vue/issues"
+  },
+  "homepage": "https://github.com/Darkheadbanger/WildCodeSchool_with_vue#readme"
+}
