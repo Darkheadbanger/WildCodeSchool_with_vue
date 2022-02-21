@@ -11,4 +11,14 @@ module.exports = {
   env: {
     "vue/setup-compiler-macros": true,
   },
+  // CSS: {
+  //   loaderOptions: {
+  //     sass: {
+  //       data: `
+  //       @import "./src/scss/_variables.scss";
+  //       @import "./src/scss/_mixins.scss";
+  //       `,
+  //     },
+  //   }, 
+  // },
 };
