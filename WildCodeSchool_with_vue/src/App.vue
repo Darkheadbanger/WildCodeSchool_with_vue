@@ -1,32 +1,33 @@
 <script setup>
 // vue-router est la fichier index.js ou se trouve le fichier HomeView.vue
 // qui comprte le fichier TheWelcome.vue
-import { RouterLink, RouterView } from "vue-router";
+// import { RouterLink, RouterView } from "vue-router";
 // Le fichier HelloWorld
-import HelloWorld from "@/components/HelloWorld.vue";
+import HelloWorld from "@/components/HelloWorld1.vue";
+import TheWelcome from "@/components/TheWelcome.vue";
+import Header from "@/components/Header.vue";
 </script>
 
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
+  <div class="body">
+    <header>
+      <img
+        alt="Vue logo"
+        class="logo"
+        src="@/assets/logo.svg"
+        width="125"
+        height="125"
+      />
 
-    <div class="wrapper">
-      <!-- Le message du type chaine de charactèrs qu'on a passé via le props au fichier HelloWorld.vue -->
-      <HelloWorld msg="You did it!" />
-      <nav>
-        <!-- RouterLink est la propriété du routeur pour "le faux changement de la page" -->
-        <RouterLink to="/">Home</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+      <div class="wrapper">
+        <HelloWorld msg="You did it!" />
+        
+      </div>
+    </header>
+    <main>
+      <TheWelcome />
+    </main>
+  </div>
 </template>
 
 <style>
@@ -35,6 +36,25 @@ Parcontre on peut utiliser le scope en dehors de App.vue par exemple dans compon
 */
 @import "@/assets/base.css";
 
+/* Button add */
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.wrapper {
+  display: none;
+}
+/* Jusqu'ici */
 #app {
   max-width: 1280px;
   margin: 0 auto;
