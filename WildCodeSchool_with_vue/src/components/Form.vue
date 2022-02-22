@@ -1,14 +1,10 @@
 <script setup>
-// import { defineProps, onMounted, ref } from "vue";
-defineProps({
-  // crewArray: {
-  //   type: Array,
-  //   required: true,
-  // },
-  addrCew: {
-    type: Function,
-    required: true,
-  },
+import { defineProps } from "vue";
+const props = defineProps({
+  // Nom de l'Argonaute
+  Argonaute: { type: String, required: true },
+  getData: { type: Function },
+  label: { type: String, required: true },
 });
 // const crewInput = ref("");
 // const crewArray = [
@@ -49,7 +45,8 @@ defineProps({
 <template>
   <!-- New member form -->
   <!-- v-on et @ le même -->
-  <form @submit.prevent="addrCew(e)" class="new-member-form">
+  <!-- v-on:submit.prevent="getData()" -->
+  <form class="new-member-form">
     <label for="addName">{{ Argonaute }}</label>
     <input
       id="addName"
@@ -57,14 +54,15 @@ defineProps({
       type="text"
       autocomplete="off"
       placeholder="Charalampos"
-      v-model="label"
+      :value="props.label"
     />
+    <!-- v-model="label" -->
     <button
       id="button-add"
       role="button"
       type="submit"
       :disabled="label === ''"
-      @click="addrCew"
+      v-on:click.prevent="getData()"
     >
       Ajouter
     </button>
