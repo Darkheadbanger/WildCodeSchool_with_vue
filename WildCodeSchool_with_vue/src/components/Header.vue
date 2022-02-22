@@ -9,32 +9,26 @@ defineProps({
     required: true,
   },
 });
+import imageWCS from "../assets/Wild-Code-School-logo.png";
 </script>
 
 <template>
   <header>
     <h1>
-      <img
-        src="./public/imgs/Wild-Code-School-logo.png"
-        alt="Wild Code School logo"
-      />
+      <img :src="imageWCS" alt="Wild Code School logo" />
       {{ title }}
     </h1>
   </header>
 </template>
 
 <style scoped lang="scss">
-header {
-  background: $background-header;
-  text-align: center;
-  padding: 2em;
+// @import "../scss/variables";
+// @import "../scss/mixins";
+img {
+  max-width: 96px;
+}
 
-  img {
-    max-width: 96px;
-  }
-
-  h1 {
-    font-size: 2.5em;
-  }
+h1 {
+  font-size: 2.5em;
 }
 </style>

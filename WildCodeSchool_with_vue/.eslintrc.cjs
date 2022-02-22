@@ -19,6 +19,6 @@ module.exports = {
   //       @import "./src/scss/_mixins.scss";
   //       `,
   //     },
-  //   }, 
+  //   },
   // },
 };

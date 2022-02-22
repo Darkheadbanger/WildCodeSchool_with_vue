@@ -1,35 +1,36 @@
 <script setup>
-
+// Le script permet d'écrire notre "JS"
+// Le fichier HelloWorld.vue va être transferer au fichier App.vue pour qu'il puisse être lu et afficher à la page
+// Il y a une fonction nommé defineProps qui contient un objet avec un donnée msg qui lui contient
+// le type qui doit être passé ici, chaine de charactères et doir être fournie avec la propriété réquired true
+defineProps({
+  Argonaute: {
+    type: String,
+    required: true,
+  },
+});
+import Form from "./Form.vue";
+import Member from "./Member.vue";
 </script>
 
 <template>
-  <main>
+  <div>
     <!-- New member form -->
     <h2>Ajouter un(e) Argonaute</h2>
-    <form class="new-member-form">
-      <label for="addName">Nom de l&apos;Argonaute</label>
-      <input
-        id="addName"
-        name="addName"
-        type="text"
-        placeholder="Charalampos"
-      />
-      <button id="button-add" role="button" type="submit">Ajouter</button>
-    </form>
-
+    <Form Argonaute="Nom de l'Argonaute" />
     <!-- Member list -->
     <h2>Membres de l'équipage</h2>
-    <section class="member-list"></section>
-  </main>
+    <section class="member-list">
+      <div v-for="(members, index) in crewArray" :key="index">
+        <Member :members="members" />
+      </div>
+    </section>
+  </div>
 </template>
 
 <style scoped lang="scss">
-main {
-  max-width: 960px;
-  margin: 0 auto;
-}
 .member-list {
-  color: $member-text-color;
+  color: red;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -39,9 +40,9 @@ main {
     position: relative;
     line-height: 3em;
     border-radius: 10px;
-    color: $name-text-color;
-    @include nameShadow;
-    background-color: $name-background;
+    color: white;
+    box-shadow: #26394d 0px 20px 30px -10px;
+    background-color: #f76c6c;
     text-align: center;
     padding: 0em 7em;
   }
