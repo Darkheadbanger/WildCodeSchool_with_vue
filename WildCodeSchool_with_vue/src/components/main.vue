@@ -1,17 +1,9 @@
 <script setup>
-// Le script permet d'écrire notre "JS"
-// Le fichier HelloWorld.vue va être transferer au fichier App.vue pour qu'il puisse être lu et afficher à la page
-// Il y a une fonction nommé defineProps qui contient un objet avec un donnée msg qui lui contient
-// le type qui doit être passé ici, chaine de charactères et doir être fournie avec la propriété réquired true
 import Form from "./Form.vue";
 import Member from "./Member.vue";
 import { defineProps, onMounted, ref } from "vue";
-defineProps({
-  Argonaute: {
-    type: String,
-    required: true,
-  },
-});
+defineProps({});
+// Je dois passer label dans le component enfant form dans le v-model: "label"
 const crewArray = [
   {
     id: 1,
@@ -22,15 +14,14 @@ const crewArray = [
     name: "Davidthos",
   },
 ];
-
-const label = ref("");
-function addrCew(e) {
-  // label.value = `Don't touch me`;
-  let preventCharge = e.preventDefault();
-  // Si l'input est vide, on ne peut pas l'envoyer
+const label = ref(""); // correpsond a v-model="label"
+function getData() {
+  console.log("passed 1");
   if (label.value.trim() === "") {
-    return preventCharge;
+    console.log("passed 2");
+    return;
   } else {
+    console.log("passe 3");
     console.log({ crewArray });
     console.log("value", label);
     console.log("label values", label.value);
@@ -39,7 +30,12 @@ function addrCew(e) {
       label.value = "";
     }
   }
-  localStorage.setItem("crew-member", crewArray);
+
+  if (JSON.parse(localStorage.getItem("crew-member")) === null) {
+    localStorage.setItem("crew-member", JSON.stringify(crewArray));
+  } else {
+    localStorage.setItem("crew-member", JSON.stringify(crewArray));
+  }
 }
 onMounted(() => {
   if (localStorage.getItem("crew-member") !== null) {
@@ -47,8 +43,9 @@ onMounted(() => {
     console.log(pushCrew);
   }
   if (localStorage.getItem("crew-member") === null) {
-    localStorage.setItem("crew-member", crewArray);
+    localStorage.setItem("crew-member", JSON.stringify(crewArray));
   }
+  // addrCew();
 });
 </script>
 
@@ -56,7 +53,12 @@ onMounted(() => {
   <div>
     <!-- New member form -->
     <h2>Ajouter un(e) Argonaute</h2>
-    <Form Argonaute="Nom de l'Argonaute" :addrCew="addrCew" />
+    <Form
+      Argonaute="Nom de l'Argonaute"
+      v-model="label"
+      :label="label"
+      :getData="getData"
+    />
     <!-- Member list -->
     <h2>Membres de l'équipage</h2>
     <section class="member-list">
