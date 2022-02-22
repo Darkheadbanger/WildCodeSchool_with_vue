@@ -1,9 +1,4 @@
 <script setup>
-// Le script permet d'écrire notre "JS"
-// Le fichier HelloWorld.vue va être transferer au fichier App.vue pour qu'il puisse être lu et afficher à la page
-// Il y a une fonction nommé defineProps qui contient un objet avec un donnée msg qui lui contient
-// le type qui doit être passé ici, chaine de charactères et doir être fournie avec la propriété réquired true
-
 defineProps({
   members: {
     type: String,

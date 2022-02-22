@@ -1,49 +1,54 @@
 <script setup>
-import { defineProps, onMounted, ref } from "vue";
+// import { defineProps, onMounted, ref } from "vue";
 defineProps({
-  Argonaute: {
-    type: String,
+  // crewArray: {
+  //   type: Array,
+  //   required: true,
+  // },
+  addrCew: {
+    type: Function,
     required: true,
   },
 });
 // const crewInput = ref("");
-const label = ref("");
-const crewArray = [
-  {
-    name: "Eleftheria",
-  },
-];
-
-function addrCew(e) {
-  // label.value = `Don't touch me`;
-  let preventCharge = e.preventDefault();
-  // Si l'input est vide, on ne peut pas l'envoyer
-  if (label.value.trim() === "") {
-    return preventCharge;
-  } else {
-    console.log(crewArray);
-    console.log("value", label);
-    console.log("label values", label.value);
-    crewArray.unshift(label.value.trim());
-    if (label.value.trim() !== "") {
-      label.value = "";
-    }
-  }
-  localStorage.setItem("crew-member", crewArray);
-}
-onMounted(() => {
-  if (localStorage.getItem("crew-member") !== null) {
-    let pushCrew = crewArray.unshift(localStorage.getItem("crew-member"));
-    console.log(pushCrew);
-  }
-  if (localStorage.getItem("crew-member") === null) {
-    localStorage.setItem("crew-member", crewArray);
-  }
-});
+// const crewArray = [
+//   {
+//     id: 1,
+//     name: "Eleftheria",
+//   },
+// ];
+// const label = ref("");
+// function addrCew(e) {
+//   // label.value = `Don't touch me`;
+//   let preventCharge = e.preventDefault();
+//   // Si l'input est vide, on ne peut pas l'envoyer
+//   if (label.value.trim() === "") {
+//     return preventCharge;
+//   } else {
+//     console.log({ crewArray });
+//     console.log("value", label);
+//     console.log("label values", label.value);
+//     crewArray.unshift(label.value.trim());
+//     if (label.value.trim() !== "") {
+//       label.value = "";
+//     }
+//   }
+//   localStorage.setItem("crew-member", crewArray);
+// }
+// onMounted(() => {
+//   if (localStorage.getItem("crew-member") !== null) {
+//     let pushCrew = crewArray.unshift(localStorage.getItem("crew-member"));
+//     console.log(pushCrew);
+//   }
+//   if (localStorage.getItem("crew-member") === null) {
+//     localStorage.setItem("crew-member", crewArray);
+//   }
+// });
 </script>
 
 <template>
   <!-- New member form -->
+  <!-- v-on et @ le même -->
   <form @submit.prevent="addrCew(e)" class="new-member-form">
     <label for="addName">{{ Argonaute }}</label>
     <input
