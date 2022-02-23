@@ -13,7 +13,7 @@ const crewArray = [
     id: 2,
     name: "Davidthos",
   },
-]; 
+];
 const label = ref(""); // correpsond a v-model="label"
 function getData() {
   console.log("passed 1");
