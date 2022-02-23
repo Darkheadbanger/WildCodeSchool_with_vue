@@ -13,7 +13,7 @@ const crewArray = [
     id: 2,
     name: "Davidthos",
   },
-];
+]; 
 const label = ref(""); // correpsond a v-model="label"
 function getData() {
   console.log("passed 1");
@@ -53,12 +53,11 @@ onMounted(() => {
   <div>
     <!-- New member form -->
     <h2>Ajouter un(e) Argonaute</h2>
-    <Form
-      Argonaute="Nom de l'Argonaute"
-      v-model="label"
-      :label="label"
-      :getData="getData"
-    />
+    <!-- Form component enfant -->
+    <!-- v-label="label" et v-bind ou :label="label" pour créer une propre pour que cela sois transferable à l'enfant -->
+    <!--       :label="label"
+ -->
+    <Form Argonaute="Nom de l'Argonaute" v-model="label" @on-click="getData" />
     <!-- Member list -->
     <h2>Membres de l'équipage</h2>
     <section class="member-list">
