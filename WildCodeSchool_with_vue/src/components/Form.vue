@@ -1,45 +1,18 @@
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, defineEmits } from "vue";
 const props = defineProps({
   // Nom de l'Argonaute
   Argonaute: { type: String, required: true },
   getData: { type: Function },
-  label: { type: String, required: true },
+  // Props label pour réccuperer le label dans la function addArray
+  modelValue: { type: String, required: true },
 });
-// const crewInput = ref("");
-// const crewArray = [
-//   {
-//     id: 1,
-//     name: "Eleftheria",
-//   },
-// ];
-// const label = ref("");
-// function addrCew(e) {
-//   // label.value = `Don't touch me`;
-//   let preventCharge = e.preventDefault();
-//   // Si l'input est vide, on ne peut pas l'envoyer
-//   if (label.value.trim() === "") {
-//     return preventCharge;
-//   } else {
-//     console.log({ crewArray });
-//     console.log("value", label);
-//     console.log("label values", label.value);
-//     crewArray.unshift(label.value.trim());
-//     if (label.value.trim() !== "") {
-//       label.value = "";
-//     }
-//   }
-//   localStorage.setItem("crew-member", crewArray);
+defineEmits(["update:modelValue"]);
+
+// function onClick() {
+//   this.$emit("on-click");
 // }
-// onMounted(() => {
-//   if (localStorage.getItem("crew-member") !== null) {
-//     let pushCrew = crewArray.unshift(localStorage.getItem("crew-member"));
-//     console.log(pushCrew);
-//   }
-//   if (localStorage.getItem("crew-member") === null) {
-//     localStorage.setItem("crew-member", crewArray);
-//   }
-// });
+// Je dois passer l'input de l'enfant au parents en utilisant emit car props ne fonctionne que pour parent enfant
 </script>
 
 <template>
@@ -48,13 +21,15 @@ const props = defineProps({
   <!-- v-on:submit.prevent="getData()" -->
   <form class="new-member-form">
     <label for="addName">{{ Argonaute }}</label>
+    <!-- :value="props.label" pour récuperer le label du props qui se trouve dans le component forms -->
+    <!-- J'aimerais que cela se connecte et quand on clique le bouton ajouter, va ajouter l'input que l'utilisateur mis dans le tableau addCrew -->
     <input
       id="addName"
       name="addName"
       type="text"
       autocomplete="off"
       placeholder="Charalampos"
-      :value="props.label"
+      :value="props.modelValue"
     />
     <!-- v-model="label" -->
     <button
@@ -62,7 +37,7 @@ const props = defineProps({
       role="button"
       type="submit"
       :disabled="label === ''"
-      v-on:click.prevent="getData()"
+      @click.prevent="$emit('onClick')"
     >
       Ajouter
     </button>
