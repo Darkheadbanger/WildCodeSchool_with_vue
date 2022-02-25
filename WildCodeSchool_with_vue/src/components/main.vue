@@ -10,8 +10,8 @@ const crewArray = [
 /*const label = ref(""); // correpsond a v-model="label"*/
 function addMember(memberName) {
   if (memberName.trim() === "") {
-    return;
-  } else {
+    return alert("Renseigner un Argonaute");
+  } else { 
     // get(obtenir) l'id maximale, puis créer une nouvelle id plus grande de 1+.
     // reduce((acc, currentValues))
     console.log("memnerName", memberName);
@@ -21,7 +21,7 @@ function addMember(memberName) {
         return current;
       } else {
         return prev;
-      } 
+      }
     });
     let newId = maxArray.id + 1;
     // Ajouter le nouveau crew membre dans le tableau cewArray
