@@ -1,39 +1,39 @@
 <script setup>
 import Form from "./Form.vue";
 import Member from "./Member.vue";
-import { defineProps, onMounted, ref } from "vue";
-defineProps({});
+import { onMounted } from "vue";
 // Je dois passer label dans le component enfant form dans le v-model: "label"
 const crewArray = [
-  {
-    id: 1,
-    name: "Eleftheria",
-  },
-  {
-    id: 2,
-    name: "Davidthos",
-  },
+  { id: 1, name: "Eleftheria" },
+  { id: 2, name: "Davidthos" },
 ];
-const label = ref(""); // correpsond a v-model="label"
-function getData() {
-  console.log("passed 1");
-  if (label.value.trim() === "") {
-    console.log("passed 2");
+/*const label = ref(""); // correpsond a v-model="label"*/
+function addMember(memberName) {
+  if (memberName === "") {
     return;
   } else {
-    console.log("passe 3");
-    console.log({ crewArray });
-    console.log("value", label);
-    console.log("label values", label.value);
-    crewArray.unshift(label.value.trim());
-    if (label.value.trim() !== "") {
-      label.value = "";
+    // get(obtenir) l'id maximale, puis créer une nouvelle id plus grande de 1+.
+    // reduce((acc, currentValues))
+    console.log("pass1");
+    let maxArray = crewArray.reduce((prev, current) => {
+      // Si l'id courant est plus grand que l'id précedent on retourne l'id courant (ex: 2 > 1 returne 2)
+      if (current.id > prev.id) {
+        return current;
+      } else {
+        return prev;
+      }
+    });
+    console.log("passe4");
+    console.log("memnerName", memberName);
+    let newId = maxArray.id + 1;
+    // Ajouter le nouveau crew membre dans le tableau cewArray
+    crewArray.push({
+      id: newId,
+      name: memberName,
+    });
+    if (memberName !== "") {
+      memberName = "";
     }
-  }
-
-  if (JSON.parse(localStorage.getItem("crew-member")) === null) {
-    localStorage.setItem("crew-member", JSON.stringify(crewArray));
-  } else {
     localStorage.setItem("crew-member", JSON.stringify(crewArray));
   }
 }
@@ -45,26 +45,26 @@ onMounted(() => {
   if (localStorage.getItem("crew-member") === null) {
     localStorage.setItem("crew-member", JSON.stringify(crewArray));
   }
-  // addrCew();
 });
 </script>
 
 <template>
   <div>
-    <!-- New member form -->
-    <h2>Ajouter un(e) Argonaute</h2>
-    <!-- Form component enfant -->
-    <!-- v-label="label" et v-bind ou :label="label" pour créer une propre pour que cela sois transferable à l'enfant -->
-    <!--       :label="label"
- -->
-    <Form Argonaute="Nom de l'Argonaute" v-model="label" @on-click="getData" />
+    <h2>Add an Argonaut</h2>
+    <!-- form 2 ici -->
+    <Form Argonaute="Nom de l'Argonaute" @add-member="addMember"></Form>
+
     <!-- Member list -->
     <h2>Membres de l'équipage</h2>
-    <section class="member-list">
-      <div v-for="(members, index) in crewArray" :key="index">
-        <Member :members="members" />
-      </div>
-    </section>
+    <ul class="member-list">
+      <ul>
+        <Member
+          v-for="crewMember in crewArray"
+          :key="crewMember.id"
+          :member="crewMember"
+        />
+      </ul>
+    </ul>
   </div>
 </template>
 

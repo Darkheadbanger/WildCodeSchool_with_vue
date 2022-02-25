@@ -1,48 +1,38 @@
 <script setup>
 import { defineProps, defineEmits } from "vue";
-const props = defineProps({
+defineProps({
   // Nom de l'Argonaute
   Argonaute: { type: String, required: true },
-  getData: { type: Function },
-  // Props label pour réccuperer le label dans la function addArray
-  modelValue: { type: String, required: true },
 });
-defineEmits(["update:modelValue"]);
-
-// function onClick() {
-//   this.$emit("on-click");
-// }
-// Je dois passer l'input de l'enfant au parents en utilisant emit car props ne fonctionne que pour parent enfant
+defineEmits(["add-member"]);
+const memberName = ""; // correpsond a v-model="label"
 </script>
 
 <template>
-  <!-- New member form -->
   <!-- v-on et @ le même -->
-  <!-- v-on:submit.prevent="getData()" -->
   <form class="new-member-form">
     <label for="addName">{{ Argonaute }}</label>
-    <!-- :value="props.label" pour récuperer le label du props qui se trouve dans le component forms -->
     <!-- J'aimerais que cela se connecte et quand on clique le bouton ajouter, va ajouter l'input que l'utilisateur mis dans le tableau addCrew -->
     <input
+      type="text"
       id="addName"
       name="addName"
-      type="text"
-      autocomplete="off"
       placeholder="Charalampos"
-      :value="props.modelValue"
+      autocomplete="off"
+      v-model="memberName"
     />
+    <!-- :value="props.modelValue" -->
     <!-- v-model="label" -->
     <button
       id="button-add"
       role="button"
       type="submit"
-      :disabled="label === ''"
-      @click.prevent="$emit('onClick')"
+      :disabled="formLabel === ''"
+      @click.prevent="$emit('add-member', memberName)"
     >
-      Ajouter
+      Ajouter Membre
     </button>
   </form>
-  <!-- Member list -->
 </template>
 
 <style scoped lang="scss">

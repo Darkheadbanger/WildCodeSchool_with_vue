@@ -1,14 +1,11 @@
 <script setup>
 defineProps({
-  members: {
-    type: String,
-    required: true,
-  },
+  member: { type: Object },
 });
 </script>
 <template>
   <!-- <div class="member-item">Eleftheria</div> -->
-  <div class="member-item">{{ members.name }}</div>
+  <li class="member-item">{{ member.id }}) {{ member.name }}</li>
 </template>
 
 <style scoped lang="scss">
