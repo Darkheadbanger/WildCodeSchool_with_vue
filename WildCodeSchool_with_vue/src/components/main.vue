@@ -9,12 +9,12 @@ const crewArray = [
 ];
 /*const label = ref(""); // correpsond a v-model="label"*/
 function addMember(memberName) {
-  if (memberName === "") {
+  if (memberName.trim() === "") {
     return;
   } else {
     // get(obtenir) l'id maximale, puis créer une nouvelle id plus grande de 1+.
     // reduce((acc, currentValues))
-    console.log("pass1");
+    console.log("memnerName", memberName);
     let maxArray = crewArray.reduce((prev, current) => {
       // Si l'id courant est plus grand que l'id précedent on retourne l'id courant (ex: 2 > 1 returne 2)
       if (current.id > prev.id) {
@@ -23,17 +23,12 @@ function addMember(memberName) {
         return prev;
       }
     });
-    console.log("passe4");
-    console.log("memnerName", memberName);
     let newId = maxArray.id + 1;
     // Ajouter le nouveau crew membre dans le tableau cewArray
     crewArray.push({
       id: newId,
-      name: memberName,
+      name: memberName.trim(),
     });
-    if (memberName !== "") {
-      memberName = "";
-    }
     localStorage.setItem("crew-member", JSON.stringify(crewArray));
   }
 }
