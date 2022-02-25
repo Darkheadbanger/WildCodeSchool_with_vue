@@ -11,7 +11,7 @@ const crewArray = [
 function addMember(memberName) {
   if (memberName.trim() === "") {
     return alert("Renseigner un Argonaute");
-  } else { 
+  } else {
     // get(obtenir) l'id maximale, puis créer une nouvelle id plus grande de 1+.
     // reduce((acc, currentValues))
     console.log("memnerName", memberName);
@@ -29,6 +29,12 @@ function addMember(memberName) {
       id: newId,
       name: memberName.trim(),
     });
+
+    // Pour effacer l'input si il est remplo
+    if (memberName !== "") {
+      memberName = "";
+    }
+
     localStorage.setItem("crew-member", JSON.stringify(crewArray));
   }
 }
