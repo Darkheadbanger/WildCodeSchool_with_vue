@@ -21,7 +21,7 @@ function addMember(memberName) {
         return current;
       } else {
         return prev;
-      }
+      } 
     });
     let newId = maxArray.id + 1;
     // Ajouter le nouveau crew membre dans le tableau cewArray
