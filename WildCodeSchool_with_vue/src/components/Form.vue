@@ -18,7 +18,7 @@ const memberName = ""; // correpsond a v-model="label"
       id="addName"
       name="addName"
       placeholder="Charalampos"
-      autocomplete="off"
+      autocomplete="off" 
       v-model="memberName"
     />
     <!-- :value="props.modelValue" -->
