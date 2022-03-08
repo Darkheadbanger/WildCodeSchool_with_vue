@@ -7,16 +7,14 @@ const crewArray = [
   { id: 1, name: "Eleftheria" },
   { id: 2, name: "Davidthos" },
 ];
-/*const label = ref(""); // correpsond a v-model="label"*/
+
 function addMember(memberName) {
   if (memberName.trim() === "") {
     return alert("Renseigner un Argonaute");
   } else {
-    // get(obtenir) l'id maximale, puis créer une nouvelle id plus grande de 1+.
-    // reduce((acc, currentValues))
     console.log("memnerName", memberName);
+    // Si l'id courant est plus grand que l'id précedent on retourne l'id courant (ex: 2 > 1 returne 2)
     let maxArray = crewArray.reduce((prev, current) => {
-      // Si l'id courant est plus grand que l'id précedent on retourne l'id courant (ex: 2 > 1 returne 2)
       if (current.id > prev.id) {
         return current;
       } else {
@@ -30,10 +28,7 @@ function addMember(memberName) {
       name: memberName.trim(),
     });
 
-    // Pour effacer l'input si il est remplo
-    if (memberName !== "") {
-      memberName = "";
-    }
+    memberName = "";
 
     localStorage.setItem("crew-member", JSON.stringify(crewArray));
   }
@@ -42,8 +37,7 @@ onMounted(() => {
   if (localStorage.getItem("crew-member") !== null) {
     let pushCrew = crewArray.unshift(localStorage.getItem("crew-member"));
     console.log(pushCrew);
-  }
-  if (localStorage.getItem("crew-member") === null) {
+  } else {
     localStorage.setItem("crew-member", JSON.stringify(crewArray));
   }
 });
@@ -58,13 +52,11 @@ onMounted(() => {
     <!-- Member list -->
     <h2>Membres de l'équipage</h2>
     <ul class="member-list">
-      <ul>
-        <Member
-          v-for="crewMember in crewArray"
-          :key="crewMember.id"
-          :member="crewMember"
-        />
-      </ul>
+      <Member
+        v-for="crewMember in crewArray"
+        :key="crewMember.id"
+        :member="crewMember"
+      />
     </ul>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-  member: { type: Object },
+  member: { type: Object, required: true },
 });
 </script>
 <template>
