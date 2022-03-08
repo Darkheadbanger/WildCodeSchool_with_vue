@@ -1,13 +1,12 @@
 <script setup>
-import { defineProps, defineEmits } from "vue";
+import { defineProps } from "vue";
 defineProps({
-  // Nom de l'Argonaute
   Argonaute: { type: String, required: true },
+  // addMember: { type: Function, required: true },
 });
-defineEmits(["add-member"]);
+defineEmits(["addMember"]);
 const memberName = ""; // correpsond a v-model="label"
 </script>
-
 <template>
   <!-- v-on et @ le même -->
   <form class="new-member-form">
@@ -16,21 +15,11 @@ const memberName = ""; // correpsond a v-model="label"
     <input
       type="text"
       id="addName"
-      name="addName"
-      placeholder="Charalampos"
-      autocomplete="off" 
+      placeholder="Charlampos"
       v-model="memberName"
     />
-    <!-- :value="props.modelValue" -->
-    <!-- v-model="label" -->
-    <button
-      id="button-add"
-      role="button"
-      type="submit"
-      :disabled="formLabel === ''"
-      @click.prevent="$emit('add-member', memberName)"
-    >
-      Ajouter Membre
+    <button type="submit" @click.prevent="$emit('addMember', memberName)">
+      Add Member
     </button>
   </form>
 </template>
